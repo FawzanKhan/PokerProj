@@ -161,7 +161,7 @@ public class PlayerInGame {
 	}
 
 	public void populateHashMaps(LinkedList<Card> hand, HashMap<String, LinkedList<Card>> suitMap,
-	HashMap<Integer, LinkedList<Card>> rankMap) {
+			HashMap<Integer, LinkedList<Card>> rankMap) {
 		for (Card c : hand) {
 			LinkedList<Card> rankList = rankMap.get(c.getRankValue());
 			if (rankList == null) {
@@ -178,7 +178,7 @@ public class PlayerInGame {
 	}
 
 	public void resetHashMaps(LinkedList<Card> hand, HashMap<String, LinkedList<Card>> suitMap,
-	HashMap<Integer, LinkedList<Card>> rankMap) {
+			HashMap<Integer, LinkedList<Card>> rankMap) {
 		suitMap.clear();
 		rankMap.clear();
 		populateHashMaps(hand, suitMap, rankMap);
@@ -189,7 +189,7 @@ public class PlayerInGame {
 	/************* FLUSH, STRAIGHT, AND STRAIGHT FLUSH FUNCTIONS ************/
 
 	public void flush(HashMap<String, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap,
-	int sameSuitCount) {
+			int sameSuitCount) {
 		LinkedList<Card> temp = new LinkedList<Card>();
 		// Add the cards from your 2 card hand to see if you have a flush
 		if (sameSuitCount == 3 || sameSuitCount == 4) {
@@ -205,7 +205,7 @@ public class PlayerInGame {
 	}
 
 	public void straight(HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap,
-	LinkedList<Card> valueList) {
+			LinkedList<Card> valueList) {
 		Object[] arr = valueList.toArray();
 		Card[] cardArr = Arrays.copyOf(arr, arr.length, Card[].class);
 
@@ -222,7 +222,7 @@ public class PlayerInGame {
 	}
 
 	public void straightFlush(HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap,
-	LinkedList<Card> valueList, LinkedList<Card> suitList) {
+			LinkedList<Card> valueList, LinkedList<Card> suitList) {
 		Object[] arr = valueList.toArray();
 		Card[] cardArr = Arrays.copyOf(arr, arr.length, Card[].class);
 
@@ -239,7 +239,7 @@ public class PlayerInGame {
 	}
 
 	public void findStraightOrStraightFlush(HashMap<Integer, LinkedList<Card>> map,
-	HashMap<String, LinkedList<Card>> sMap, HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<String, LinkedList<Card>> sMap, HashMap<Integer, LinkedList<Card>> handMap) {
 		boolean straightHand = true;
 		addRankHandToHashMap(map);
 		addSuitHandToHashMap(sMap);
@@ -278,7 +278,7 @@ public class PlayerInGame {
 	}
 
 	public LinkedList<Card> getHighestStraight(Card[] cardArr, LinkedList<Card> temp1, LinkedList<Card> temp2,
-	LinkedList<Card> temp3) {
+			LinkedList<Card> temp3) {
 		for (int i = 0; i < cardArr.length - 2; i++) {
 			if (cardArr[i].getRankValue() + 1 != cardArr[i + 1].getRankValue()) {
 				// Not in sequential order
@@ -325,7 +325,7 @@ public class PlayerInGame {
 	}
 
 	public LinkedList<Card> getHighestStraightFlush(Card[] cardArr, LinkedList<Card> temp1, LinkedList<Card> temp2,
-	LinkedList<Card> temp3, LinkedList<Card> suitList, HashMap<Integer, LinkedList<Card>> handMap) {
+			LinkedList<Card> temp3, LinkedList<Card> suitList, HashMap<Integer, LinkedList<Card>> handMap) {
 		for (int i = 0; i < cardArr.length - 2; i++) {
 			if (cardArr[i].getRankValue() + 1 != cardArr[i + 1].getRankValue()) {
 				// Not in sequential order
@@ -391,7 +391,7 @@ public class PlayerInGame {
 	}
 
 	public void findAndAddFlush(HashMap<String, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap,
-	LinkedList<Card> temp) {
+			LinkedList<Card> temp) {
 		for (Entry<String, LinkedList<Card>> elem : map.entrySet()) {
 			// If after adding your two cards you get 5 with the same suit, you have a flush
 			if (elem.getValue().size() == 5) {
@@ -414,7 +414,7 @@ public class PlayerInGame {
 	}
 
 	public void findAndAddFlush2(HashMap<String, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap,
-	LinkedList<Card> temp) {
+			LinkedList<Card> temp) {
 		for (Entry<String, LinkedList<Card>> elem : map.entrySet()) {
 			// if after adding your cards, one suit has a flush with one of your cards + 5
 			// others, need to remove one
@@ -469,7 +469,7 @@ public class PlayerInGame {
 	/************** 4 OF KIND, 3 OF KIND, FULL HOUSE, 2 PAIR, PAIR AND HIGH CARD FUNCTIONS **************/
 
 	public void findPairOrKindOrFullHouse(HashMap<Integer, LinkedList<Card>> map,
-	HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<Integer, LinkedList<Card>> handMap) {
 		int pairCounter = 0;
 		int threeOfKind = 0;
 		int fourOfKind = 0;
@@ -578,7 +578,7 @@ public class PlayerInGame {
 	}
 
 	public void findFourOfKind(LinkedList<Card> fourKindList, HashMap<Integer, LinkedList<Card>> map,
-	HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<Integer, LinkedList<Card>> handMap) {
 		LinkedList<Card> list = new LinkedList<Card>();
 		for (Entry<Integer, LinkedList<Card>> elem : map.entrySet()) {
 			list.addAll(elem.getValue());
@@ -593,7 +593,7 @@ public class PlayerInGame {
 	}
 
 	public void findThreeOfKind(LinkedList<Card> threeKindList, HashMap<Integer, LinkedList<Card>> map,
-	HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<Integer, LinkedList<Card>> handMap) {
 		LinkedList<Card> list = new LinkedList<Card>();
 		for (Entry<Integer, LinkedList<Card>> elem : map.entrySet()) {
 			list.addAll(elem.getValue());
@@ -611,7 +611,7 @@ public class PlayerInGame {
 	}
 
 	public void findFullHouseWithPair(LinkedList<Card> threeKindList, LinkedList<Card> pairList,
-	LinkedList<Card> twoCardHandList, HashMap<Integer, LinkedList<Card>> handMap) {
+			LinkedList<Card> twoCardHandList, HashMap<Integer, LinkedList<Card>> handMap) {
 		if (!pairList.isEmpty() && !twoCardHandList.isEmpty()) {
 			LinkedList<Card> list = new LinkedList<Card>();
 			list.addAll(pairList);
@@ -649,7 +649,7 @@ public class PlayerInGame {
 	}
 
 	public void findTwoPair(LinkedList<Card> twoCardHandList, LinkedList<Card> pairList,
-	HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap) {
 		LinkedList<Card> list = new LinkedList<Card>();
 		for (Entry<Integer, LinkedList<Card>> elem : map.entrySet()) {
 			list.addAll(elem.getValue());
@@ -679,7 +679,7 @@ public class PlayerInGame {
 	}
 
 	public void findPair(LinkedList<Card> twoCardHandList, LinkedList<Card> pairList,
-	HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap) {
+			HashMap<Integer, LinkedList<Card>> map, HashMap<Integer, LinkedList<Card>> handMap) {
 		LinkedList<Card> list = new LinkedList<Card>();
 		for (Entry<Integer, LinkedList<Card>> elem : map.entrySet()) {
 			list.addAll(elem.getValue());
